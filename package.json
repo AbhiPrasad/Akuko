@@ -1,0 +1,34 @@
+{
+  "name": "akuko",
+  "version": "1.0.0",
+  "description": "A lightweight novel tracker",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AbhiPrasad/akuko.git"
+  },
+  "keywords": [
+    "novel",
+    "tracker"
+  ],
+  "author": "Abhijeet Prasad",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AbhiPrasad/akuko/issues"
+  },
+  "homepage": "https://github.com/AbhiPrasad/akuko#readme",
+  "dependencies": {
+    "@types/react": "^15.0.22",
+    "@types/react-dom": "^0.14.23",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.1.2",
+    "source-map-loader": "^0.2.1",
+    "typescript": "^2.2.2"
+  }
+}
