@@ -73,22 +73,7 @@
 module.exports = React;
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(0);
-exports.Hello = function (props) { return React.createElement("h1", null,
-    "Hello from ",
-    props.compiler,
-    " and ",
-    props.framework,
-    "!"); };
-
-
-/***/ }),
+/* 1 */,
 /* 2 */
 /***/ (function(module, exports) {
 
@@ -103,8 +88,44 @@ module.exports = ReactDOM;
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(0);
 var ReactDOM = __webpack_require__(2);
-var Hello_1 = __webpack_require__(1);
-ReactDOM.render(React.createElement(Hello_1.Hello, { compiler: "ok", framework: "React" }), document.getElementById("example"));
+var App_1 = __webpack_require__(4);
+ReactDOM.render(React.createElement(App_1.App, { compiler: "ok", framework: "React" }), document.getElementById("example"));
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(0);
+var App = (function (_super) {
+    __extends(App, _super);
+    function App() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    App.prototype.render = function () {
+        return React.createElement("h1", null,
+            " Hello from ",
+            this.props.compiler,
+            " and ",
+            this.props.framework,
+            "! ");
+    };
+    return App;
+}(React.Component));
+exports.App = App;
 
 
 /***/ })
