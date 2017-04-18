@@ -15,10 +15,12 @@
 
 .novel .titletext {
     align-self: center;
+    font-size: 18px;
 }
 
 .novel .numbertext {
     vertical-align: baseline !important;
+    font-size: 25px;
 }
 
 .novel .numbertext .pt-editable-content {
@@ -47,4 +49,8 @@
 .novel .icon-footer .pt-button {
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.novel-edit .pt-button[class*="pt-icon-"]::before {
+    font-size: 32px !important;
 }
