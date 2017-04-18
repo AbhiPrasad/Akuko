@@ -4,7 +4,8 @@
   "description": "A lightweight novel tracker",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "start": "webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "awesome-typescript-loader": "^3.1.2",
+    "reload": "^1.1.2",
     "source-map-loader": "^0.2.1",
     "typescript": "^2.2.2"
   }
