@@ -35,7 +35,8 @@ class App extends Component {
     localStorage.setItem("list", JSON.stringify(list));
 
     this.setState({
-      list
+      list,
+      filteredList: list,
     });
   }
 
@@ -53,6 +54,11 @@ class App extends Component {
       }
     });
 
+    this.setState({
+      list: newList,
+      filteredList: newList,
+    });
+
     localStorage.setItem("list", JSON.stringify(newList));
   }
 
@@ -65,6 +71,7 @@ class App extends Component {
 
     this.setState({
       list: newList,
+      filteredList: newList,
     });
 
     localStorage.setItem("list", JSON.stringify(newList));
@@ -77,22 +84,21 @@ class App extends Component {
       return item.title.toLowerCase().trim().indexOf(term.toLowerCase().trim()) > -1;
     });
 
-    this.setState({
-      list: filteredList,
-    })
-
-    console.log(term);
+     this.setState({
+      filteredList,
+    });
   }
 
   render() {
-    const { list } = this.state
+    const { filteredList } = this.state
+    console.log(filteredList);
     return (
       <div className="app">
         Akuko
         <Search 
           searchList={this.searchList}
         />
-        {list.map((item, index) => {
+        {filteredList.map((item, index) => {
           return (
               <Novel
                 key={item.id}
