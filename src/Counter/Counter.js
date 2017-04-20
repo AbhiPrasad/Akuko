@@ -77,7 +77,7 @@ class Counter extends Component {
             <div className="counter pt-card">
                 <EditableText 
                     minWidth={270}
-                    placeholder="counter title" 
+                    placeholder="Title" 
                     className="titletext"
                     value={title} 
                     onChange={this.allowTitleChange}
