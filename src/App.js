@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Novel from './Novel/Novel';
+import Counter from './Counter/Counter';
 import NewButton from './NewButton/NewButton';
 import Search from './Search/Search';
 
@@ -23,7 +23,7 @@ class App extends Component {
     }
   }
 
-  addNewNovel = () => {
+  addNewCounter = () => {
     const { list } = this.state;
 
     list.push({
@@ -40,12 +40,8 @@ class App extends Component {
     });
   }
 
-  updateNovel = (title, number, id) => {
-    console.log(number);
+  updateCounter = (title, number, id) => {
     const { list } = this.state;
-
-    console.log(list);
-
     const newList = list.map(item => {
       if (item.id === id) {
         return { id, number, title }
@@ -62,7 +58,7 @@ class App extends Component {
     localStorage.setItem("list", JSON.stringify(newList));
   }
 
-  deleteNovel = (id) => {
+  deleteCounter = (id) => {
     const { list } = this.state;
 
     const newList = list.filter(item => {
@@ -91,7 +87,6 @@ class App extends Component {
 
   render() {
     const { filteredList } = this.state
-    console.log(filteredList);
     return (
       <div className="app">
         Akuko
@@ -100,18 +95,18 @@ class App extends Component {
         />
         {filteredList.map((item, index) => {
           return (
-              <Novel
+              <Counter
                 key={item.id}
                 id={item.id}
                 number={item.number}
                 title={item.title}
-                updateNovel={this.updateNovel}
-                deleteNovel={this.deleteNovel}
+                updateCounter={this.updateCounter}
+                deleteCounter={this.deleteCounter}
               />
           );
         })}
         <NewButton 
-          onClick={this.addNewNovel}
+          onClick={this.addNewCounter}
         />
       </div>
     );

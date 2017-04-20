@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-import './Novel.css';
+import './Counter.css';
 
 import { EditableText, Button } from '@blueprintjs/core';
 
-class Novel extends Component {
+class Counter extends Component {
     constructor(props) {
         super(props);
 
@@ -15,28 +15,28 @@ class Novel extends Component {
     }
 
     addNum = () => {
-        const { updateNovel, id } = this.props;
+        const { updateCounter, id } = this.props;
 
         const { number, title } = this.state;
 
         const validNum = +number + 1;
         this.setState({ number: validNum });
-        updateNovel(title, validNum, id);
+        updateCounter(title, validNum, id);
     }
 
     minusNum = () => {
-        const { updateNovel, id } = this.props;
+        const { updateCounter, id } = this.props;
 
         const { number, title } = this.state;
         const validNum = +number - 1;
         if (validNum >= 0) {
             this.setState({ number: validNum });
-            updateNovel(title, validNum, id);
+            updateCounter(title, validNum, id);
         }
     }
 
     confirmNum = input  => {
-        const { updateNovel, id } = this.props;
+        const { updateCounter, id } = this.props;
 
         const { title } = this.state;
 
@@ -46,7 +46,7 @@ class Novel extends Component {
         if (invalidNum || num < 0) {
             this.setState({ number: '' });
         } else {
-            updateNovel(title, input, id);
+            updateCounter(title, input, id);
         }
     }
 
@@ -55,10 +55,10 @@ class Novel extends Component {
     }
 
     confirmTitle = title => {
-        const { updateNovel, id } = this.props;
+        const { updateCounter, id } = this.props;
         const { number } = this.state;
 
-        updateNovel(title, number, id);
+        updateCounter(title, number, id);
     }
 
     allowTitleChange = title => {
@@ -66,24 +66,24 @@ class Novel extends Component {
     }
 
     deleteItem = () => {
-        const { id, deleteNovel } = this.props;
+        const { id, deleteCounter } = this.props;
 
-        deleteNovel(id);
+        deleteCounter(id);
     }
 
     render() {
         const { number, title } = this.state;
         return (
-            <div className="novel pt-card">
+            <div className="counter pt-card">
                 <EditableText 
                     minWidth={270}
-                    placeholder="Novel title" 
+                    placeholder="counter title" 
                     className="titletext"
                     value={title} 
                     onChange={this.allowTitleChange}
                     onConfirm={this.confirmTitle}
                 />
-                <div className="novel-edit">
+                <div className="counter-edit">
                     <Button 
                         onClick={() => this.minusNum()}
                         type="reflexbutton" 
@@ -114,4 +114,4 @@ class Novel extends Component {
     }
 }
 
-export default Novel;
+export default Counter;

@@ -16,7 +16,7 @@ class Search extends Component {
                 <input 
                     className="pt-input" 
                     type="search" 
-                    placeholder="Search Novels" 
+                    placeholder="Search Counters" 
                     dir="auto" 
                     onChange={this.searchItems}
                 />
