@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './Novel.css';
 
-import { EditableText, Button } from '@blueprintjs/core'
+import { EditableText, Button } from '@blueprintjs/core';
 
 class Novel extends Component {
     constructor(props) {
@@ -12,25 +12,50 @@ class Novel extends Component {
             number: '0',
             title: '',
         }
-
-        this.addNum = this.addNum.bind(this);
-        this.minusNum = this.minusNum.bind(this);
     }
 
-    addNum() {
-        console.log('wow');
-        
+    addNum = () => {
+        const { number } = this.state;
+        const validNum = +number + 1;
+        this.setState({ number: validNum });
     }
 
-    minusNum() {
-        console.log('whoa');
+    minusNum = () => {
+        const { number } = this.state;
+        const validNum = +number - 1;
+        if (validNum >= 0) {
+            this.setState({ number: validNum });
+        }
+    }
+
+    validateNum = input  => {
+        const num = +input;
+        const invalidNum = (isNaN(num));
+
+        if (invalidNum || num < 0) {
+            this.setState({ number: '' });
+        }
+    }
+
+    allowNumChange = number => {
+        this.setState({ number });
+    }
+
+    allowTitleChange = title => {
+        this.setState({ title });
     }
 
     render() {
         const { number, title } = this.state
         return (
             <div className="novel pt-card">
-                <EditableText minWidth="270px" placeholder="Novel title" className="titletext" />
+                <EditableText 
+                    minWidth="300px" 
+                    placeholder="Novel title" 
+                    className="titletext"
+                    value={title} 
+                    onChange={this.allowTitleChange}
+                />
                 <div className="novel-edit">
                     <Button 
                         onClick={() => this.minusNum()}
@@ -38,7 +63,14 @@ class Novel extends Component {
                         iconName="minus" 
                         className="pt-button pt-minimal pt-icon-large" 
                     />
-                    <EditableText placeholder="0" className="numbertext" />
+                    <EditableText 
+                        placeholder="0" 
+                        className="numbertext"
+                        onConfirm={this.validateNum}
+                        onChange={this.allowNumChange}
+                        maxLength={5}
+                        value={number}
+                    />
                     <Button 
                         onClick={() => this.addNum()}
                         type="button" 

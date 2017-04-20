@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Novel from './Novel/Novel';
+import NewButton from './NewButton/NewButton';
 
 import '../node_modules/@blueprintjs/core/dist/blueprint.css';
 import '../node_modules/normalize.css/normalize.css';
@@ -12,6 +13,7 @@ class App extends Component {
       <div className="app">
         Akuko
         <Novel />
+        <NewButton />
       </div>
     );
   }
