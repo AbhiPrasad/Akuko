@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './NewButton.css';
 
-import { Button } from '@blueprintjs/core';
-
-const NewButton = () => {
+const NewButton = ({ onClick }) => {
     return (
-        <div class="create-btn">
-            <Button
-                
-            />
+        <div className="create-btn">
+            <button type="button" onClick={onClick} className="pt-button pt-icon-add pt-intent-success">New</button>
         </div>
     );
 }

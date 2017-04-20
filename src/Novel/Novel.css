@@ -1,5 +1,5 @@
 .novel {
-    max-width: 300px;
+    width: 300px;
     display: flex;
     justify-content: space-around;
     flex-direction: column;
@@ -11,6 +11,7 @@
 
 .pt-card {
     padding: 10px 7px 10px 7px !important;
+    margin-top: 25px;
 }
 
 .novel .titletext {

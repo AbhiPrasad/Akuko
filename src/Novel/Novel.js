@@ -9,8 +9,8 @@ class Novel extends Component {
         super(props);
 
         this.state = {
-            number: '0',
-            title: '',
+            number: this.props.number,
+            title: this.props.title,
         }
     }
 
@@ -28,12 +28,14 @@ class Novel extends Component {
         }
     }
 
-    validateNum = input  => {
+    confirmNum = input  => {
         const num = +input;
         const invalidNum = (isNaN(num));
 
         if (invalidNum || num < 0) {
             this.setState({ number: '' });
+        } else {
+            // TODO: Call higher function
         }
     }
 
@@ -41,7 +43,12 @@ class Novel extends Component {
         this.setState({ number });
     }
 
+    confirmTitle = title => {
+        // TODO: Call higher function
+    }
+
     allowTitleChange = title => {
+        console.log(title);
         this.setState({ title });
     }
 
@@ -50,11 +57,12 @@ class Novel extends Component {
         return (
             <div className="novel pt-card">
                 <EditableText 
-                    minWidth="300px" 
+                    minWidth={270}
                     placeholder="Novel title" 
                     className="titletext"
                     value={title} 
                     onChange={this.allowTitleChange}
+                    onConfirm={this.confirmTitle}
                 />
                 <div className="novel-edit">
                     <Button 
@@ -66,7 +74,7 @@ class Novel extends Component {
                     <EditableText 
                         placeholder="0" 
                         className="numbertext"
-                        onConfirm={this.validateNum}
+                        onConfirm={this.confirmNum}
                         onChange={this.allowNumChange}
                         maxLength={5}
                         value={number}
