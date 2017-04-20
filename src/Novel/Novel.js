@@ -15,27 +15,30 @@ class Novel extends Component {
     }
 
     addNum = () => {
-        const { updateNovelNumber, index } = this.props;
+        const { updateNovel, id } = this.props;
 
-        const { number } = this.state;
+        const { number, title } = this.state;
+
         const validNum = +number + 1;
         this.setState({ number: validNum });
-        updateNovelNumber(validNum, index);
+        updateNovel(title, validNum, id);
     }
 
     minusNum = () => {
-        const { updateNovelNumber, index } = this.props;
+        const { updateNovel, id } = this.props;
 
-        const { number } = this.state;
+        const { number, title } = this.state;
         const validNum = +number - 1;
         if (validNum >= 0) {
             this.setState({ number: validNum });
-            updateNovelNumber(validNum, index);
+            updateNovel(title, validNum, id);
         }
     }
 
     confirmNum = input  => {
-        const { updateNovelNumber, index } = this.props;
+        const { updateNovel, id } = this.props;
+
+        const { title } = this.state;
 
         const num = +input;
         const invalidNum = (isNaN(num));
@@ -43,7 +46,7 @@ class Novel extends Component {
         if (invalidNum || num < 0) {
             this.setState({ number: '' });
         } else {
-            updateNovelNumber(input, index);
+            updateNovel(title, input, id);
         }
     }
 
@@ -52,9 +55,10 @@ class Novel extends Component {
     }
 
     confirmTitle = title => {
-        const { updateNovelTitle, index } = this.props;
+        const { updateNovel, id } = this.props;
+        const { number } = this.state;
 
-        updateNovelTitle(title, index);
+        updateNovel(title, number, id);
     }
 
     allowTitleChange = title => {
@@ -62,9 +66,9 @@ class Novel extends Component {
     }
 
     deleteItem = () => {
-        const { index, deleteNovel } = this.props;
+        const { id, deleteNovel } = this.props;
 
-        deleteNovel(index);
+        deleteNovel(id);
     }
 
     render() {

@@ -5,6 +5,7 @@ import NewButton from './NewButton/NewButton';
 import Search from './Search/Search';
 
 import _ from 'lodash';
+import uuid from 'uuid';
 
 import '../node_modules/@blueprintjs/core/dist/blueprint.css';
 import '../node_modules/normalize.css/normalize.css';
@@ -26,6 +27,7 @@ class App extends Component {
     const { list } = this.state;
 
     list.push({
+      id: uuid.v4(),
       number: 0,
       title: "",
     });
@@ -37,44 +39,35 @@ class App extends Component {
     });
   }
 
-  updateNovelNumber = (number, index) => {
+  updateNovel = (title, number, id) => {
+    console.log(number);
     const { list } = this.state;
 
-    const oldTitle = list[index].title;
+    console.log(list);
 
-    list.splice(index, 1, {
-      number,
-      title: oldTitle,
+    const newList = list.map(item => {
+      if (item.id === id) {
+        return { id, number, title }
+      } else {
+        return item;
+      }
     });
 
-    localStorage.setItem("list", JSON.stringify(list));
+    localStorage.setItem("list", JSON.stringify(newList));
   }
 
-  updateNovelTitle = (title, index) => {
+  deleteNovel = (id) => {
     const { list } = this.state;
 
-    const oldNumber = list[index].number;
-
-    list.splice(index, 1, {
-      number: oldNumber,
-      title,
+    const newList = list.filter(item => {
+      return item.id !== id;
     });
-
-    localStorage.setItem("list", JSON.stringify(list));
-  }
-
-  deleteNovel = (index) => {
-    const { list } = this.state;
-
-    console.log(index);
-
-    list.splice(index, 1);
 
     this.setState({
-      list,
+      list: newList,
     });
 
-    localStorage.setItem("list", JSON.stringify(list));
+    localStorage.setItem("list", JSON.stringify(newList));
   }
 
   searchList = (term) => {
@@ -85,29 +78,28 @@ class App extends Component {
     });
 
     this.setState({
-      filteredList,
+      list: filteredList,
     })
 
     console.log(term);
   }
 
   render() {
-    const { filteredList } = this.state
+    const { list } = this.state
     return (
       <div className="app">
         Akuko
         <Search 
           searchList={this.searchList}
         />
-        {filteredList.map((item, index) => {
+        {list.map((item, index) => {
           return (
               <Novel
-                key={_.uniqueId()}
-                index={index}
+                key={item.id}
+                id={item.id}
                 number={item.number}
                 title={item.title}
-                updateNovelNumber={this.updateNovelNumber}
-                updateNovelTitle={this.updateNovelTitle}
+                updateNovel={this.updateNovel}
                 deleteNovel={this.deleteNovel}
               />
           );
