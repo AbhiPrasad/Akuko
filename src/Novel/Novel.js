@@ -15,27 +15,35 @@ class Novel extends Component {
     }
 
     addNum = () => {
+        const { updateNovelNumber, index } = this.props;
+
         const { number } = this.state;
         const validNum = +number + 1;
         this.setState({ number: validNum });
+        updateNovelNumber(validNum, index);
     }
 
     minusNum = () => {
+        const { updateNovelNumber, index } = this.props;
+
         const { number } = this.state;
         const validNum = +number - 1;
         if (validNum >= 0) {
             this.setState({ number: validNum });
+            updateNovelNumber(validNum, index);
         }
     }
 
     confirmNum = input  => {
+        const { updateNovelNumber, index } = this.props;
+
         const num = +input;
         const invalidNum = (isNaN(num));
 
         if (invalidNum || num < 0) {
             this.setState({ number: '' });
         } else {
-            // TODO: Call higher function
+            updateNovelNumber(input, index);
         }
     }
 
@@ -44,16 +52,23 @@ class Novel extends Component {
     }
 
     confirmTitle = title => {
-        // TODO: Call higher function
+        const { updateNovelTitle, index } = this.props;
+
+        updateNovelTitle(title, index);
     }
 
     allowTitleChange = title => {
-        console.log(title);
         this.setState({ title });
     }
 
+    deleteItem = () => {
+        const { index, deleteNovel } = this.props;
+
+        deleteNovel(index);
+    }
+
     render() {
-        const { number, title } = this.state
+        const { number, title } = this.state;
         return (
             <div className="novel pt-card">
                 <EditableText 
@@ -87,7 +102,7 @@ class Novel extends Component {
                     />
                 </div>
                 <div className="icon-footer">
-                    <Button type="button" iconName="trash" className="pt-button pt-minimal" />
+                    <Button type="button" onClick={() => this.deleteItem()} iconName="trash" className="pt-button pt-minimal" />
                     <Button type="button" iconName="star-empty" className="pt-button pt-minimal" />
                 </div>
             </div>
