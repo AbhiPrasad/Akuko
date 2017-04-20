@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Novel from './Novel/Novel';
 import NewButton from './NewButton/NewButton';
+import Search from './Search/Search';
 
 import _ from 'lodash';
 
@@ -17,6 +18,7 @@ class App extends Component {
 
     this.state = {
       list,
+      filteredList: list,
     }
   }
 
@@ -75,12 +77,29 @@ class App extends Component {
     localStorage.setItem("list", JSON.stringify(list));
   }
 
+  searchList = (term) => {
+    const { list } = this.state;
+
+    const filteredList = list.filter(item => {
+      return item.title.toLowerCase().trim().indexOf(term.toLowerCase().trim()) > -1;
+    });
+
+    this.setState({
+      filteredList,
+    })
+
+    console.log(term);
+  }
+
   render() {
-    const { list } = this.state
+    const { filteredList } = this.state
     return (
       <div className="app">
         Akuko
-        {list.map((item, index) => {
+        <Search 
+          searchList={this.searchList}
+        />
+        {filteredList.map((item, index) => {
           return (
               <Novel
                 key={_.uniqueId()}
